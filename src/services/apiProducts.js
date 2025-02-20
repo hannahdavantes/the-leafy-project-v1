@@ -17,13 +17,13 @@ export async function getProducts() {
 export async function getProduct(id) {
   const { data, error } = await supabase
     .from("products")
-    .select("*, cabins(*), guests(*)")
-    .eq("id", id)
+    .select("*, product_variations(*), categories(*), care_instructions(*)")
+    .eq("product_id", id)
     .single();
 
   if (error) {
     console.error(error);
-    throw new Error("Booking not found");
+    throw new Error("Product not found");
   }
 
   return data;
