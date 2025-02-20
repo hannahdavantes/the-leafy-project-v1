@@ -86,7 +86,7 @@ function ProductCard({ product }) {
         <ButtonGroup>
           <Button
             variation="secondary"
-            onClick={() => navigate(`/product/${product_id}`)}
+            onClick={() => navigate(`/products/${product_id}`)}
           >
             View Details
           </Button>
