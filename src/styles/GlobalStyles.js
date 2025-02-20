@@ -32,17 +32,16 @@ const GlobalStyles = createGlobalStyle`
   --color-primary-10: #073b3a;
 
   --color-secondary-1: #e7cb8a;
-  --color-secondary-2: #f9c74f;
-  --color-secondary-3: #f7c01b;
+  --color-secondary-2: #f2c078;
+  --color-secondary-3: #fcac5d;
+  --color-secondary-4: #f9c74f;
+  --color-secondary-5: #f7c01b;
+  --color-secondary-6: #f3722c;
+  --color-secondary-7: #e36414;
 
-  --color-tertiary-1: #f2c078;
-  --color-tertiary-2: #fcac5d;
-  --color-tertiary-3: #f3722c;
-  --color-tertiary-4: #e36414;
-
-  --color-red-100: #fee2e2;
-  --color-red-700: #b91c1c;
-  --color-red-800: #991b1b;
+  --color-red-1: #fee2e2;
+  --color-red-2: #b91c1c;
+  --color-red-3: #991b1b;
 
   --backdrop-color: rgba(255, 255, 255, 0.1);
 
@@ -108,7 +107,6 @@ input:disabled {
 }
 
 input:focus,
-button:focus,
 textarea:focus,
 select:focus {
   outline: 2px solid var(--color-primary-7);
