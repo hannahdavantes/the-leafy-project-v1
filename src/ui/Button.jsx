@@ -1,4 +1,28 @@
 import styled, { css } from "styled-components";
+const sizes = {
+  small: css`
+    font-size: 1.2rem;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  `,
+  medium: css`
+    font-size: 1.4rem;
+    padding: 1.2rem 1.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
+    min-width: 24rem;
+  `,
+  large: css`
+    font-size: 2rem;
+    padding: 1.2rem 2.4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.35rem;
+    width: 80%;
+  `,
+};
 
 const variations = {
   primary: css`
@@ -38,10 +62,11 @@ const variations = {
 
 const Button = styled.button`
   cursor: pointer;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
   border-radius: 2rem;
   transition: 0.2s;
+  text-align: center;
+
+  ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
 
   &:hover {
@@ -54,6 +79,7 @@ const Button = styled.button`
 `;
 
 Button.defaultProps = {
+  size: "small",
   variation: "primary",
 };
 

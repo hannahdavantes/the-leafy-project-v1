@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import { Toaster } from "react-hot-toast";
 import GlobalStyles from "./styles/GlobalStyles";
 
 import AppLayout from "./ui/AppLayout";
@@ -42,6 +42,26 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: "8px" }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+            error: {
+              duration: 5000,
+            },
+            style: {
+              fontSize: "1.8rem",
+              maxWidth: "50rem",
+              padding: "1.6rem 2.4rem",
+              backgroundColor: "var(--color-off-white-1)",
+              color: "var(--color-brown-black-2)",
+            },
+          }}
+        />
       </QueryClientProvider>
     </>
   );

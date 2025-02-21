@@ -85,12 +85,15 @@ function ProductCard({ product }) {
         </Price>
         <ButtonGroup>
           <Button
+            size="small"
             variation="secondary"
             onClick={() => navigate(`/products/${product_id}`)}
           >
             View Details
           </Button>
-          <Button variation="primary">Add to Cart</Button>
+          <Button size="small" variation="primary">
+            Add to Cart
+          </Button>
         </ButtonGroup>
       </ProductDetailContainer>
     </Card>

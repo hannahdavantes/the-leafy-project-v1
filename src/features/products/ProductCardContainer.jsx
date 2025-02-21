@@ -5,14 +5,16 @@ import { useProducts } from "../products/useProducts";
 import ProductCard from "./ProductCard";
 import Heading from "../../ui/Heading";
 import Spinner from "../../ui/Spinner";
-import CategoriesSelect from "../categories/CategoriesSelect";
+import Button from "../../ui/Button";
+import CreateProduct from "./CreateProduct";
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
-  justify-content: space-around;
+  justify-content: center;
   padding: 5rem;
+  align-items: center;
 `;
 
 function ProductCardContainer() {
@@ -29,6 +31,7 @@ function ProductCardContainer() {
       {data.map((product) => (
         <ProductCard product={product} key={product.product_id} />
       ))}
+      <CreateProduct />
     </Container>
   );
 }
