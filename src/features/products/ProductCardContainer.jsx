@@ -5,6 +5,7 @@ import { useProducts } from "../products/useProducts";
 import ProductCard from "./ProductCard";
 import Heading from "../../ui/Heading";
 import Spinner from "../../ui/Spinner";
+import CategoriesSelect from "../categories/CategoriesSelect";
 
 const Container = styled.div`
   display: flex;

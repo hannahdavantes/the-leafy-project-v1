@@ -65,7 +65,7 @@ function ProductCard({ product }) {
   const navigate = useNavigate();
   const { product_id, product_name, image_url, product_variations } = product;
   const { price } = product_variations.at(0);
-  console.log(product_variations.length);
+
   return (
     <Card>
       <ImgContainer>
