@@ -6,6 +6,7 @@ import ProductCard from "./ProductCard";
 import Heading from "../../ui/Heading";
 import Spinner from "../../ui/Spinner";
 import Button from "../../ui/Button";
+import ProductTable from "./ProductTable";
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-function ProductCardContainer() {
+function ProductsContainer() {
   const { data, isLoading, error } = useProducts();
 
   if (isLoading) return <Spinner />;
@@ -27,11 +28,12 @@ function ProductCardContainer() {
 
   return (
     <Container>
-      {data.map((product) => (
+      {/* {data.map((product) => (
         <ProductCard product={product} key={product.product_id} />
-      ))}
+      ))} */}
+      <ProductTable />
     </Container>
   );
 }
 
-export default ProductCardContainer;
+export default ProductsContainer;

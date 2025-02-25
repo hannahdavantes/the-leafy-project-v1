@@ -28,3 +28,18 @@ export async function getProduct(id) {
 
   return data;
 }
+
+export async function createProduct({ product }) {
+  console.log("API", product);
+  const { data, error } = await supabase
+    .from("products")
+    .insert([{ ...product }])
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Can't add new product");
+  }
+
+  return data;
+}

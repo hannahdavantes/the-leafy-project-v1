@@ -64,7 +64,9 @@ const ButtonGroup = styled.div`
 function ProductCard({ product }) {
   const navigate = useNavigate();
   const { product_id, product_name, image_url, product_variations } = product;
-  const { price } = product_variations.at(0);
+
+  let price = null;
+  if (product_variations) price = product_variations.at(0)?.price;
 
   return (
     <Card>
@@ -80,9 +82,16 @@ function ProductCard({ product }) {
       <ProductDetailContainer>
         <Name>{product_name}</Name>
         <Price>
-          {product_variations.length > 1 && <span>starting from</span>}
-          {formatCurrency(price)}
+          {price ? (
+            <>
+              {product_variations.length > 1 && <span>starting from</span>}
+              {formatCurrency(price)}
+            </>
+          ) : (
+            <span>Coming soon...</span>
+          )}
         </Price>
+
         <ButtonGroup>
           <Button
             size="small"

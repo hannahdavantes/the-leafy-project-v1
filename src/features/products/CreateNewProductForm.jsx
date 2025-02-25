@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
 
 import { useParentCategories } from "../categories/useParentCategories";
 import { useSubCategories } from "../categories/useSubCategories";
+import { useCreateProduct } from "./useCreateProduct";
 
 import Form from "../../ui/Form";
 import FormGroup from "../../ui/FormGroup";
@@ -13,30 +13,52 @@ import FileInput from "../../ui/FileInput";
 import Button from "../../ui/Button";
 import Select from "../../ui/Select";
 import MiniSpinner from "../../ui/MiniSpinner";
+import Spinner from "../../ui/Spinner";
+import { useNavigate } from "react-router-dom";
 
 function CreateNewProductForm() {
   const {
     register,
     watch,
     handleSubmit,
+    resetField,
     formState: { errors },
   } = useForm();
+
+  const navigate = useNavigate();
+
+  const { isCreating, createProduct } = useCreateProduct();
 
   const { data: parentCategories, isLoading: isLoadingParentCategories } =
     useParentCategories();
 
-  const selectedParentCategory = watch("parentCategory") || 0;
+  const selectedParentCategory = watch("parent_category", 1);
 
   const { data: subCategories, isLoading: isLoadingSubCategories } =
     useSubCategories(selectedParentCategory);
 
   function onSubmit(data) {
-    console.log(data);
+    const { product_name, description, parent_category, sub_category } = data;
+    const category_id = sub_category ? sub_category : parent_category;
+
+    const newProduct = { product_name, description, category_id };
+
+    console.log(newProduct);
+    createProduct(
+      { product: { ...newProduct } },
+      {
+        onSuccess: () => {
+          navigate("/products");
+        },
+      }
+    );
   }
 
   function onError(errors) {
     console.log(errors);
   }
+
+  if (isCreating) return <Spinner />;
   return (
     <>
       <h1>ADD NEW PRODUCT</h1>
@@ -54,7 +76,7 @@ function CreateNewProductForm() {
           <TextArea
             type="text"
             id="description"
-            {...register("product_description", {
+            {...register("description", {
               required: "Please put a description",
             })}
           />
@@ -66,8 +88,15 @@ function CreateNewProductForm() {
           {isLoadingParentCategories ? (
             <MiniSpinner />
           ) : (
-            <Select {...register("parentCategory")}>
-              <option disabled selected>
+            <Select
+              defaultValue={"1"}
+              {...register("parent_category", {
+                onChange: () => {
+                  resetField("sub_category");
+                },
+              })}
+            >
+              <option disabled value="1">
                 Please select a category...
               </option>
               {parentCategories.map(({ category_id, category_name }) => (
@@ -82,9 +111,9 @@ function CreateNewProductForm() {
           <MiniSpinner />
         ) : (
           subCategories?.length > 0 && (
-            <FormGroup label="SubCategory">
-              <Select {...register("subCategory")}>
-                <option disabled selected>
+            <FormGroup label="Sub-category">
+              <Select defaultValue={null} {...register("sub-category")}>
+                <option disabled value="0">
                   Please select a sub-category...
                 </option>
                 {subCategories.map(({ category_id, category_name }) => (

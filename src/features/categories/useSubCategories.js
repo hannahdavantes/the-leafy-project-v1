@@ -3,7 +3,7 @@ import { getSubCategories } from "../../services/apiCategories";
 
 export function useSubCategories(parentCategoryId) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["parent_categories", "sub_categories", parentCategoryId],
+    queryKey: ["sub_categories", "parent_categories", parentCategoryId],
     queryFn: () => getSubCategories(parentCategoryId),
   });
 
