@@ -6,7 +6,6 @@ import ProductCard from "./ProductCard";
 import Heading from "../../ui/Heading";
 import Spinner from "../../ui/Spinner";
 import Button from "../../ui/Button";
-import CreateProduct from "./CreateProduct";
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +30,6 @@ function ProductCardContainer() {
       {data.map((product) => (
         <ProductCard product={product} key={product.product_id} />
       ))}
-      <CreateProduct />
     </Container>
   );
 }

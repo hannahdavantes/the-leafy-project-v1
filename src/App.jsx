@@ -11,6 +11,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ServicesPage from "./pages/ServicesPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import CreateNewProductForm from "./features/products/CreateNewProductForm";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,7 @@ function App() {
                 path="products/:productId"
                 element={<ProductDetailPage />}
               />
+              <Route path="products/new" element={<CreateNewProductForm />} />
               <Route path="services" element={<ServicesPage />} />
               <Route path="aboutus" element={<AboutUsPage />} />
               <Route path="contact" element={<ContactUsPage />} />
