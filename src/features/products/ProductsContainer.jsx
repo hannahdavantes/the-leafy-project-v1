@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-import { useProducts } from "../products/useProducts";
+import { useProductsCompact } from "./useProductsCompact";
+import { useProductsDetailed } from "./useProductsDetailed";
 
 import ProductCard from "./ProductCard";
 import Heading from "../../ui/Heading";
@@ -18,17 +19,22 @@ const Container = styled.div`
 `;
 
 function ProductsContainer() {
-  const { data, isLoading, error } = useProducts();
+  const {
+    data: productsCompact,
+    isLoading: isLoadingCompact,
+    error: errorCompact,
+  } = useProductsCompact();
 
-  if (isLoading) return <Spinner />;
+  if (isLoadingCompact) return <Spinner />;
 
-  if (!data) return <Heading as="h1">Cannot load products...</Heading>;
+  if (!productsCompact)
+    return <Heading as="h1">Cannot load products...</Heading>;
 
-  if (error) return <Heading as="h1">{error.message}</Heading>;
+  if (errorCompact) return <Heading as="h1">Something went</Heading>;
 
   return (
     <Container>
-      {/* {data.map((product) => (
+      {/* {productsCompact.map((product) => (
         <ProductCard product={product} key={product.product_id} />
       ))} */}
       <ProductTable />

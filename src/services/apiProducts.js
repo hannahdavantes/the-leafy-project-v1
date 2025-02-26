@@ -1,11 +1,23 @@
 import supabase from "./supabase";
 
-export async function getProducts() {
+export async function getProductsCompact() {
   const { data, error } = await supabase
     .from("products")
     .select(
       "product_id, product_name, image_url,  product_variations(product_id, price)"
     );
+
+  if (error) {
+    console.error(error);
+  }
+
+  return data;
+}
+
+export async function getProductsDetailed() {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*, categories(*), care_instructions(*), product_variations(*)");
 
   if (error) {
     console.error(error);

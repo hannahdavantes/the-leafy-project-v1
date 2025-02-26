@@ -1,7 +1,7 @@
-import ProductCardContainer from "../features/products/ProductCardContainer";
+import ProductsContainer from "../features/products/ProductsContainer";
 
 function ProductsPage() {
-  return <ProductCardContainer />;
+  return <ProductsContainer />;
 }
 
 export default ProductsPage;
