@@ -13,8 +13,8 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
+  padding: 2rem;
   justify-content: center;
-  padding: 5rem;
   align-items: center;
 `;
 

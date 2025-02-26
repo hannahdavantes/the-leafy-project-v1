@@ -3,7 +3,7 @@ import { getProductsCompact } from "../../services/apiProducts";
 
 export function useProductsCompact() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", "products_compound"],
     queryFn: getProductsCompact,
   });
 

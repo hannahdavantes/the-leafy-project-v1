@@ -2,10 +2,9 @@ import { createContext, useContext } from "react";
 import styled from "styled-components";
 
 const StyledTable = styled.div`
-  border: 1px solid var(--color-grey-200);
-
+  border: 1px solid var(--color-brown-black-1);
   font-size: 1.4rem;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-off-white-2);
   border-radius: 7px;
   overflow: hidden;
 `;
@@ -15,25 +14,22 @@ const CommonRow = styled.div`
   grid-template-columns: ${(props) => props.columns};
   column-gap: 2.4rem;
   align-items: center;
-  transition: none;
+  transition: ease-in;
 `;
 
 const StyledHeader = styled(CommonRow)`
   padding: 1.6rem 2.4rem;
-
-  background-color: var(--color-grey-50);
-  border-bottom: 1px solid var(--color-grey-100);
+  background-color: var(--color-brown-black-2);
   text-transform: uppercase;
   letter-spacing: 0.4px;
   font-weight: 600;
-  color: var(--color-grey-600);
+  color: var(--color-off-white-1);
 `;
 
 const StyledRow = styled(CommonRow)`
   padding: 1.2rem 2.4rem;
-
   &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
+    border-bottom: 1px solid var(--color-gray-1);
   }
 `;
 
@@ -42,7 +38,7 @@ const StyledBody = styled.section`
 `;
 
 const Footer = styled.footer`
-  background-color: var(--color-grey-50);
+  background-color: var(--color-gray-5);
   display: flex;
   justify-content: center;
   padding: 1.2rem;

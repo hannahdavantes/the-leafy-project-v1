@@ -3,9 +3,8 @@ import { getProductsDetailed } from "../../services/apiProducts";
 
 export function useProductsDetailed() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", "products_detailed"],
     queryFn: getProductsDetailed,
-    retry: false,
   });
 
   return { isLoading, data, error };
