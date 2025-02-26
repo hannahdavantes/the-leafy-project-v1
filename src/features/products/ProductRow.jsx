@@ -18,13 +18,17 @@ function ProductRow({ product }) {
       <div>{product_name}</div>
       <div>{categories?.category_name}</div>
       <div>
-        {product_variations.map((variation) => (
-          <div key={variation.product_variation_id}>
-            {`${formatCurrency(variation.price)} (${variation.size_value}${
-              variation.size_unit
-            })`}
-          </div>
-        ))}
+        {product_variations?.length > 0 ? (
+          product_variations.map((variation) => (
+            <div key={variation.product_variation_id}>
+              {`${formatCurrency(variation.price)} (${variation.size_value}${
+                variation.size_unit
+              })`}
+            </div>
+          ))
+        ) : (
+          <div>N/A</div>
+        )}
       </div>
       <p>{description}</p>
       <TableRowActions />
