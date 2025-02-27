@@ -11,7 +11,6 @@ function ProductRow({ product }) {
     categories,
     product_variations,
   } = product;
-  console.log(product_variations);
 
   return (
     <Table.Row key={productId}>

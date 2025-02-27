@@ -1,10 +1,10 @@
-import supabase from "./supabase";
+import supabase, { supabaseUrl } from "./supabase";
 
 export async function getProductsCompact() {
   const { data, error } = await supabase
     .from("products")
     .select(
-      "product_id, product_name, image_url,  product_variations(product_id, price)"
+      "product_id, product_name, image,  product_variations(product_id, price)"
     );
 
   if (error) {
@@ -42,10 +42,17 @@ export async function getProduct(id) {
 }
 
 export async function createProduct({ product }) {
-  console.log("API", product);
+  console.log(product);
+  const imageName = `${Math.random()}-${product.image?.name}`.replaceAll(
+    "/",
+    ""
+  );
+
+  const imagePath = `${supabaseUrl}/storage/v1/object/public/products/${imageName}`;
+
   const { data, error } = await supabase
     .from("products")
-    .insert([{ ...product }])
+    .insert([{ ...product, image: imagePath }])
     .select();
 
   if (error) {
@@ -53,5 +60,16 @@ export async function createProduct({ product }) {
     throw new Error("Can't add new product");
   }
 
+  const { error: storageError } = await supabase.storage
+    .from("products")
+    .upload(imageName, product.image);
+
+  if (storageError) {
+    await supabase.from("products").delete().eq("product_id", data.product_id);
+    console.error(storageError);
+    throw new Error("Cannot upload photo. New product wasn't added");
+  }
+
   return data;
+  // return null;
 }

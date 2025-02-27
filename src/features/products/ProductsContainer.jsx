@@ -34,9 +34,9 @@ function ProductsContainer() {
 
   return (
     <Container>
-      {/* {productsCompact.map((product) => (
+      {productsCompact.map((product) => (
         <ProductCard product={product} key={product.product_id} />
-      ))} */}
+      ))}
       <ProductTable />
     </Container>
   );

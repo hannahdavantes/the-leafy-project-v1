@@ -63,7 +63,7 @@ const ButtonGroup = styled.div`
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
-  const { product_id, product_name, image_url, product_variations } = product;
+  const { product_id, product_name, image, product_variations } = product;
 
   let price = null;
   if (product_variations) price = product_variations.at(0)?.price;
@@ -73,8 +73,8 @@ function ProductCard({ product }) {
       <ImgContainer>
         <Img
           src={
-            image_url
-              ? image_url
+            image
+              ? image
               : "https://fjypotkepcjgvuqhvrwb.supabase.co/storage/v1/object/public/products//default.png"
           }
         />

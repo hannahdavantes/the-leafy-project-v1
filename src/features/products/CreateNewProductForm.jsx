@@ -40,12 +40,12 @@ function CreateNewProductForm() {
   function onSubmit(data) {
     const { product_name, description, parent_category, sub_category } = data;
     const category_id = sub_category ? sub_category : parent_category;
+    const image = typeof data.image === "string" ? data.image : data.image[0];
 
-    const newProduct = { product_name, description, category_id };
+    const newProduct = { product_name, description, category_id, image };
 
-    console.log(newProduct);
     createProduct(
-      { product: { ...newProduct } },
+      { product: { ...newProduct, image: image } },
       {
         onSuccess: () => {
           navigate("/products");
@@ -81,8 +81,8 @@ function CreateNewProductForm() {
             })}
           />
         </FormGroup>
-        <FormGroup label="Image" error={errors?.product_name?.message}>
-          <FileInput id="image" accept="image/*" />
+        <FormGroup label="Image">
+          <FileInput id="image" accept="image/*" {...register("image")} />
         </FormGroup>
         <FormGroup label="Category">
           {isLoadingParentCategories ? (
