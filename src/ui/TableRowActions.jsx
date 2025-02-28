@@ -18,10 +18,10 @@ const ButtonIcon = styled.button`
   }
 `;
 
-function TableRowActions() {
+function TableRowActions({ viewHandler }) {
   return (
     <Container>
-      <ButtonIcon>
+      <ButtonIcon onClick={viewHandler}>
         <HiEye />
       </ButtonIcon>
       <ButtonIcon>

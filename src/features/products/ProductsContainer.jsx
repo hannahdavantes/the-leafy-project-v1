@@ -6,16 +6,13 @@ import { useProductsDetailed } from "./useProductsDetailed";
 import ProductCard from "./ProductCard";
 import Heading from "../../ui/Heading";
 import Spinner from "../../ui/Spinner";
-import Button from "../../ui/Button";
-import ProductTable from "./ProductTable";
 
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  padding: 2rem;
-  justify-content: center;
-  align-items: center;
+const CardsContainer = styled.div`
+  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 4rem;
 `;
 
 function ProductsContainer() {
@@ -33,12 +30,14 @@ function ProductsContainer() {
   if (errorCompact) return <Heading as="h1">Something went</Heading>;
 
   return (
-    <Container>
-      {productsCompact.map((product) => (
-        <ProductCard product={product} key={product.product_id} />
-      ))}
-      <ProductTable />
-    </Container>
+    <CardsContainer>
+      {productsCompact.map(
+        (product) =>
+          product.isPublished && (
+            <ProductCard product={product} key={product.product_id} />
+          )
+      )}
+    </CardsContainer>
   );
 }
 

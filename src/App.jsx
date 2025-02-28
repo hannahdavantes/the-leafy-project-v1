@@ -12,6 +12,8 @@ import ServicesPage from "./pages/ServicesPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import CreateNewProductForm from "./features/products/CreateNewProductForm";
+import ProductTable from "./features/products/ProductTable";
+import ProductsContainer from "./features/products/ProductsContainer";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,12 +34,12 @@ function App() {
             <Route element={<AppLayout />}>
               <Route index element={<Navigate replace to="home" />} />
               <Route path="home" element={<HomePage />} />
-              <Route path="products" element={<ProductsPage />} />
-              <Route
-                path="products/:productId"
-                element={<ProductDetailPage />}
-              />
-              <Route path="products/new" element={<CreateNewProductForm />} />
+              <Route path="products">
+                <Route index element={<ProductsContainer />} />
+                <Route path=":productId" element={<ProductDetailPage />} />
+                <Route path="new" element={<CreateNewProductForm />} />
+                <Route path="table" element={<ProductTable />} />
+              </Route>
               <Route path="services" element={<ServicesPage />} />
               <Route path="aboutus" element={<AboutUsPage />} />
               <Route path="contact" element={<ContactUsPage />} />

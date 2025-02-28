@@ -15,6 +15,13 @@ import Select from "../../ui/Select";
 import MiniSpinner from "../../ui/MiniSpinner";
 import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 function CreateNewProductForm() {
   const {
@@ -33,6 +40,7 @@ function CreateNewProductForm() {
     useParentCategories();
 
   const selectedParentCategory = watch("parent_category", 1);
+  const selectedSubCategory = watch("sub-category", 1);
 
   const { data: subCategories, isLoading: isLoadingSubCategories } =
     useSubCategories(selectedParentCategory);
@@ -60,7 +68,7 @@ function CreateNewProductForm() {
 
   if (isCreating) return <Spinner />;
   return (
-    <>
+    <Container>
       <h1>ADD NEW PRODUCT</h1>
       <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <FormGroup label="Product Name" error={errors?.product_name?.message}>
@@ -110,9 +118,10 @@ function CreateNewProductForm() {
         {isLoadingSubCategories ? (
           <MiniSpinner />
         ) : (
-          subCategories?.length > 0 && (
+          subCategories?.length > 0 &&
+          selectedParentCategory !== 1 && (
             <FormGroup label="Sub-category">
-              <Select defaultValue={null} {...register("sub-category")}>
+              <Select defaultValue={"0"} {...register("sub-category")}>
                 <option disabled value="0">
                   Please select a sub-category...
                 </option>
@@ -134,7 +143,7 @@ function CreateNewProductForm() {
           </Button>
         </ButtonGroup>
       </Form>
-    </>
+    </Container>
   );
 }
 

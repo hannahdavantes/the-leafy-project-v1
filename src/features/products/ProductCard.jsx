@@ -10,10 +10,10 @@ const Card = styled.div`
   flex-direction: column;
   width: 28rem;
   height: 40rem;
-  box-shadow: 0.65rem 0.65rem 0 var(--color-primary-7);
-  border-radius: 0.8rem;
-  overflow: hidden;
   border: 0.5rem solid var(--color-primary-10);
+  border-radius: 0.8rem;
+  box-shadow: 0.65rem 0.65rem 0 var(--color-primary-7);
+  overflow: hidden;
 `;
 
 const ImgContainer = styled.div`

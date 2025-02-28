@@ -5,7 +5,16 @@ import Button from "../../ui/Button";
 
 import { useProductsDetailed } from "./useProductsDetailed";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+`;
 function ProductTable() {
   const navigate = useNavigate();
 
@@ -14,7 +23,7 @@ function ProductTable() {
   if (isLoading) return <Spinner />;
 
   return (
-    <>
+    <Container>
       <Table columns="1fr 1fr 1fr 4fr 1fr">
         <Table.Header>
           <div>Name</div>
@@ -33,7 +42,7 @@ function ProductTable() {
       <Button size="large" onClick={() => navigate("/products/new")}>
         Add Products
       </Button>
-    </>
+    </Container>
   );
 }
 

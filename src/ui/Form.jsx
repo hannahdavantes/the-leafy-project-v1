@@ -5,10 +5,9 @@ const Form = styled.form`
     props.type === "regular" &&
     css`
       padding: 2.4rem 4rem;
-
-      /* Box */
+      width: 90rem;
       background-color: var(--color-off-white-1);
-      border: 1px solid var(---color-primary-10);
+      border: 1px solid var(--color-primary-10);
       border-radius: var(--border-radius-md);
     `}
 

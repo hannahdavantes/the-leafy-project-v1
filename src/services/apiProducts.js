@@ -4,7 +4,7 @@ export async function getProductsCompact() {
   const { data, error } = await supabase
     .from("products")
     .select(
-      "product_id, product_name, image,  product_variations(product_id, price)"
+      "product_id, product_name, image, isPublished, product_variations(product_id, price)"
     );
 
   if (error) {

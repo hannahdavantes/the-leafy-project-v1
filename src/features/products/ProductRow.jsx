@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Table from "../../ui/Table";
 import TableRowActions from "../../ui/TableRowActions";
 
@@ -5,15 +6,22 @@ import { formatCurrency } from "../../utils/formatters";
 
 function ProductRow({ product }) {
   const {
-    id: productId,
+    product_id,
     product_name,
     description,
     categories,
     product_variations,
   } = product;
 
+  const navigate = useNavigate();
+
+  function handleView() {
+    console.log(product_id);
+    navigate(`/products/${product_id}`);
+  }
+
   return (
-    <Table.Row key={productId}>
+    <Table.Row key={product_id}>
       <div>{product_name}</div>
       <div>{categories?.category_name}</div>
       <div>
@@ -30,14 +38,8 @@ function ProductRow({ product }) {
         )}
       </div>
       <p>{description}</p>
-      <TableRowActions />
+      <TableRowActions viewHandler={handleView} />
     </Table.Row>
-
-    // <tr>
-    //   <td>{product_name}</td>
-    //   <td>{description}</td>
-    //   <td>{categories?.category_name}</td>
-    // </tr>
   );
 }
 
