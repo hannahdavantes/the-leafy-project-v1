@@ -87,12 +87,6 @@ async function createCategories() {
     }
   );
 
-  //   console.log([
-  //     ...finalPlantCategories,
-  //     ...finalPlantersCategories,
-  //     ...finalPlantMaintenanceCategories,
-  //   ]);
-
   const { data, error } = await supabase
     .from("categories")
     .insert([
