@@ -1,5 +1,5 @@
 import { useState } from "react";
-import supabase from "../services/supabase";
+import supabase, { supabaseUrl } from "../services/supabase";
 
 import Button from "../ui/Button";
 
@@ -9,6 +9,8 @@ import {
   planter_categories,
   plant_maintenance_categories,
 } from "./sample-categories-data";
+
+import { products } from "./sample-product-data";
 
 async function deleteProductVariations() {
   const { error } = await supabase
@@ -42,12 +44,22 @@ async function deleteCategories() {
   if (error) console.log(error.message);
 }
 
-function getParentCategoryId(parentCategories, categoryName) {
-  const plantCategory = parentCategories.filter(
+function getCategoryId(categories, categoryName) {
+  const category = categories.filter(
     (item) => item.category_name === categoryName
   );
 
-  return plantCategory.at(0).category_id;
+  return category.at(0).category_id;
+}
+
+async function getCategories() {
+  const { data, error } = await supabase.from("categories").select("*");
+
+  if (error) {
+    console.error(error);
+  }
+
+  return data;
 }
 
 async function createCategories() {
@@ -57,9 +69,9 @@ async function createCategories() {
     .select();
   if (parentError) console.log(parentError.message);
 
-  const plantCategoryId = getParentCategoryId(parentCategories, "Plants");
-  const planterCategoryId = getParentCategoryId(parentCategories, "Planters");
-  const plantMaintenanceCategoryId = getParentCategoryId(
+  const plantCategoryId = getCategoryId(parentCategories, "Plants");
+  const planterCategoryId = getCategoryId(parentCategories, "Planters");
+  const plantMaintenanceCategoryId = getCategoryId(
     parentCategories,
     "Plant Maintenance"
   );
@@ -96,7 +108,58 @@ async function createCategories() {
     ])
     .select();
   if (error) console.log(parentError);
-  console.log(data);
+
+  return data;
+}
+
+async function createProducts() {
+  const categories = await getCategories();
+  products.map(async (product) => {
+    const {
+      category_name,
+      product_name,
+      description,
+      image,
+      care_instructions,
+      product_variations,
+    } = product;
+
+    const { data: newProduct, error: newProductError } = await supabase
+      .from("products")
+      .insert({
+        category_id: getCategoryId(categories, category_name),
+        product_name,
+        description,
+        image: `${supabaseUrl}/storage/v1/object/public/products//${image}`,
+        isPublished: true,
+      })
+      .select()
+      .single();
+    if (newProductError) console.log(newProductError);
+
+    // Get product ID of the new product
+    const { product_id: newProductId } = newProduct;
+
+    // Add each variations
+
+    if (product_variations.length > 0) {
+      product_variations.map(async (prod) => {
+        const { error } = await supabase.from("product_variations").insert({
+          product_id: newProductId,
+          ...prod,
+        });
+        if (error) console.log(error);
+      });
+    }
+
+    if (care_instructions != undefined) {
+      const { error } = await supabase.from("care_instructions").insert({
+        product_id: newProductId,
+        ...care_instructions,
+      });
+      if (error) console.log(error);
+    }
+  });
 }
 
 function Uploader() {
@@ -109,10 +172,11 @@ function Uploader() {
     await deleteProductVariations();
     await deleteCareInstructions();
     await deleteProducts();
-    await deleteCategories();
+    // await deleteCategories();
 
     // Upload data
-    await createCategories();
+    // await createCategories();
+    await createProducts();
   }
 
   return (

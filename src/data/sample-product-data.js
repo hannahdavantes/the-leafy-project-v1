@@ -22,31 +22,31 @@ function getCareInstructions(category) {
       return {
         sun_exposure: SUN_EXPOSURE.indirect,
         when_to_water: WHEN_TO_WATER.almost_dry,
-        humidity: HUMIDITY.high,
+        humidity_level: HUMIDITY.high,
       };
     case "Alocasia":
       return {
         sun_exposure: SUN_EXPOSURE.indirect,
         when_to_water: WHEN_TO_WATER.moist,
-        humidity: HUMIDITY.high,
+        humidity_level: HUMIDITY.high,
       };
     case "Diffenbachia":
       return {
         sun_exposure: SUN_EXPOSURE.bright,
         when_to_water: WHEN_TO_WATER.almost_dry,
-        humidity: HUMIDITY.med,
+        humidity_level: HUMIDITY.med,
       };
     case "Sanseviera":
       return {
         sun_exposure: SUN_EXPOSURE.low,
         when_to_water: WHEN_TO_WATER.dry,
-        humidity: HUMIDITY.low,
+        humidity_level: HUMIDITY.low,
       };
     default:
       return {
         sun_exposure: SUN_EXPOSURE.indirect,
         when_to_water: WHEN_TO_WATER.dry,
-        humidity: HUMIDITY.med,
+        humidity_level: HUMIDITY.med,
       };
   }
 }
