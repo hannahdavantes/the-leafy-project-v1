@@ -6,6 +6,7 @@ import Button from "../../ui/Button";
 import { useProductsDetailed } from "./useProductsDetailed";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Uploader from "../../data/Uploader";
 
 const Container = styled.div`
   display: flex;
@@ -42,6 +43,7 @@ function ProductTable() {
       <Button size="large" onClick={() => navigate("/products/new")}>
         Add Products
       </Button>
+      <Uploader />
     </Container>
   );
 }

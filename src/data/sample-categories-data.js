@@ -55,7 +55,7 @@ export const plant_categories = [
 ];
 
 //PLANTERS
-export const planters_categories = [
+export const planter_categories = [
   {
     category_name: "Decorative Pots",
   },
