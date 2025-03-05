@@ -1,7 +1,15 @@
 import { createContext, useContext, useState } from "react";
-import { FaCircle } from "react-icons/fa";
+
+import Stepper from "./Stepper";
+import styled from "styled-components";
 
 const MultiStepFormContext = createContext();
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 function MultiStepForm({ children }) {
   const [currentFormIndex, setCurrentFormIndex] = useState(0);
@@ -29,15 +37,17 @@ function MultiStepForm({ children }) {
         showNextForm,
         isFirstForm: currentFormIndex === 0,
         isLastForm: currentFormIndex === children.length - 1,
+        currentFormIndex,
         formData,
         setFormData,
         setTitle,
       }}
     >
-      <>
+      <Container>
+        <Stepper steps={children} currentStepIndex={currentFormIndex} />
         <h1>{title}</h1>
         {children[currentFormIndex]}
-      </>
+      </Container>
     </MultiStepFormContext.Provider>
   );
 }
