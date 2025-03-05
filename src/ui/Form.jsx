@@ -12,7 +12,7 @@ const Form = styled.form`
     `}
 
   ${(props) =>
-    props.type === "modal" &&
+    props.type === "step" &&
     css`
       width: 80rem;
     `}

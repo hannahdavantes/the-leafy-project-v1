@@ -65,9 +65,17 @@ const Button = styled.button`
   border-radius: 2rem;
   transition: 0.2s;
   text-align: center;
+  align-items: center;
 
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
+  
+  & span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+  }
 
   &:hover {
     box-shadow: none;

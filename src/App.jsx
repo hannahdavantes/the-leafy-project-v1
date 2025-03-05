@@ -14,6 +14,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import CreateNewProductForm from "./features/products/CreateNewProductForm";
 import ProductTable from "./features/products/ProductTable";
 import ProductsContainer from "./features/products/ProductsContainer";
+import TestForm from "./ui/TestForm";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,6 +44,7 @@ function App() {
               <Route path="services" element={<ServicesPage />} />
               <Route path="aboutus" element={<AboutUsPage />} />
               <Route path="contact" element={<ContactUsPage />} />
+              <Route path="test" element={<TestForm />} />
             </Route>
           </Routes>
         </BrowserRouter>
