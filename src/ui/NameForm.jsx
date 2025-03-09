@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 import FormGroup from "./FormGroup";
 import Input from "./Input";
 import { useMultiStepFormContext } from "./MultiStepForm";
+import { useEffect } from "react";
 
 function NameForm() {
   const { setTitle } = useMultiStepFormContext();
@@ -11,7 +12,9 @@ function NameForm() {
     formState: { errors },
   } = useFormContext();
 
-  setTitle("User Data");
+  useEffect(() => {
+    setTitle("User Data");
+  }, [setTitle]);
 
   return (
     <>

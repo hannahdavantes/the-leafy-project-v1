@@ -20,6 +20,7 @@ function FormStep({ children }) {
     setFormData,
     isFirstForm,
     isLastForm,
+    onSubmit: finalSubmit,
   } = useMultiStepFormContext();
 
   const methods = useForm({ defaultValues: { ...formData } });
@@ -27,12 +28,8 @@ function FormStep({ children }) {
   function onSubmit(data) {
     console.log("FORMDATA", data);
     setFormData({ ...formData, ...data });
-    if (!isLastForm) {
-      showNextForm();
-    } else {
-      // console.log(formData);
-      console.log("SUBMIT");
-    }
+    if (!isLastForm) return showNextForm();
+    return finalSubmit();
   }
 
   function onPreviousForm() {
@@ -49,7 +46,7 @@ function FormStep({ children }) {
         {children}
         <ButtonGroup>
           {!isFirstForm && (
-            <Button onClick={onPreviousForm}>
+            <Button type="button" onClick={onPreviousForm}>
               <span>
                 <HiArrowLeft />
                 Prev

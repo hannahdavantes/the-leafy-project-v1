@@ -11,7 +11,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-function MultiStepForm({ children }) {
+function MultiStepForm({ onSubmit, children }) {
   const [currentFormIndex, setCurrentFormIndex] = useState(0);
   const [formData, setFormData] = useState({});
   const [title, setTitle] = useState("");
@@ -41,6 +41,7 @@ function MultiStepForm({ children }) {
         formData,
         setFormData,
         setTitle,
+        onSubmit,
       }}
     >
       <Container>

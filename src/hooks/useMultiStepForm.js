@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useMultiStepForm(forms) {
+export function useMultiStepForm(forms, onSubmit) {
   const [currentFormIndex, setCurrentFormIndex] = useState(0);
 
   function nextForm() {

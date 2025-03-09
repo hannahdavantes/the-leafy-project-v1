@@ -2,6 +2,7 @@ import { useFormContext } from "react-hook-form";
 import FormGroup from "./FormGroup";
 import Input from "./Input";
 import { useMultiStepFormContext } from "./MultiStepForm";
+import { useEffect } from "react";
 
 function AddressForm() {
   const { setTitle } = useMultiStepFormContext();
@@ -11,7 +12,9 @@ function AddressForm() {
     formState: { errors },
   } = useFormContext();
 
-  setTitle("More Information");
+  useEffect(() => {
+    setTitle("More Information");
+  }, [setTitle]);
 
   return (
     <>

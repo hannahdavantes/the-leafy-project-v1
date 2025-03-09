@@ -7,7 +7,7 @@ import RandomForm from "./RandomForm";
 
 function TestForm() {
   return (
-    <MultiStepForm>
+    <MultiStepForm onSubmit={() => alert("FORM SUBMITTED")}>
       <FormStep>
         <NameForm />
       </FormStep>

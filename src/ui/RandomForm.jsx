@@ -2,11 +2,15 @@ import { useFormContext } from "react-hook-form";
 import FormGroup from "./FormGroup";
 import Input from "./Input";
 import { useMultiStepFormContext } from "./MultiStepForm";
+import { useEffect } from "react";
 
 function RandomForm() {
   const { setTitle } = useMultiStepFormContext();
 
-  setTitle("Random");
+  useEffect(() => {
+    setTitle("Random");
+  }, [setTitle]);
+
   const {
     register,
     formState: { errors },
