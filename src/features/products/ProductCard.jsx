@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/formatters";
 import { useNavigate } from "react-router-dom";
+import supabaseUrl from "../../services/supabase";
 
 const Card = styled.div`
   display: grid;
@@ -75,7 +76,7 @@ function ProductCard({ product }) {
           src={
             image
               ? image
-              : "https://fjypotkepcjgvuqhvrwb.supabase.co/storage/v1/object/public/products//default.png"
+              : `${supabaseUrl}storage/v1/object/public/products//default.png`
           }
         />
       </ImgContainer>

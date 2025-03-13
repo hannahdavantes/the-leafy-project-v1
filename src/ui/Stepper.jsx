@@ -19,21 +19,25 @@ const Step = styled.span`
 `;
 
 function Stepper({ steps, currentStepIndex }) {
-  return (
-    <StyledStepper>
-      {steps.map((step, index) =>
-        index === currentStepIndex ? (
-          <ActiveStep key={index}>
-            <FaCircle />
-          </ActiveStep>
-        ) : (
-          <Step key={index}>
-            <FaCircle />
-          </Step>
-        )
-      )}
-    </StyledStepper>
-  );
+  if (steps.length > 0) {
+    return (
+      <StyledStepper>
+        {steps.map((step, index) =>
+          index === currentStepIndex ? (
+            <ActiveStep key={index}>
+              <FaCircle />
+            </ActiveStep>
+          ) : (
+            <Step key={index}>
+              <FaCircle />
+            </Step>
+          )
+        )}
+      </StyledStepper>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default Stepper;

@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 
 import FormGroup from "./FormGroup";
 import Input from "./Input";
-import { useMultiStepFormContext } from "./MultiStepForm";
+import { useMultiStepFormContext } from "./multi-step-form/MultiStepForm";
 import { useEffect } from "react";
 
 function NameForm() {

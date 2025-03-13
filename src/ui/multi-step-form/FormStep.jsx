@@ -4,9 +4,9 @@ import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 import { useMultiStepFormContext } from "./MultiStepForm";
 
-import Button from "./Button";
-import Form from "./Form";
-import ButtonGroup from "./ButtonGroup";
+import Button from "../Button";
+import Form from "../Form";
+import ButtonGroup from "../ButtonGroup";
 
 const NextButton = styled(Button)`
   margin-left: auto;

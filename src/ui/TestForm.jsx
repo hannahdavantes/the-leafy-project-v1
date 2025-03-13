@@ -1,13 +1,16 @@
-import { MultiStepForm } from "./MultiStepForm";
+import { MultiStepForm } from "./multi-step-form/MultiStepForm";
 
-import FormStep from "./FormStep";
+import FormStep from "./multi-step-form/FormStep";
 import NameForm from "./NameForm";
 import AddressForm from "./AddressForm";
 import RandomForm from "./RandomForm";
 
 function TestForm() {
+  function submit() {
+    alert("FORM SUBMITTED");
+  }
   return (
-    <MultiStepForm onSubmit={() => alert("FORM SUBMITTED")}>
+    <MultiStepForm onSubmit={submit}>
       <FormStep>
         <NameForm />
       </FormStep>

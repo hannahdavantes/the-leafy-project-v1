@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { Children, createContext, useContext, useState } from "react";
 
-import Stepper from "./Stepper";
+import Stepper from "../Stepper";
 import styled from "styled-components";
 
 const MultiStepFormContext = createContext();
@@ -15,6 +15,8 @@ function MultiStepForm({ onSubmit, children }) {
   const [currentFormIndex, setCurrentFormIndex] = useState(0);
   const [formData, setFormData] = useState({});
   const [title, setTitle] = useState("");
+
+  const childrenArray = Children.toArray(children);
 
   function showNextForm() {
     setCurrentFormIndex((i) => {
@@ -36,7 +38,7 @@ function MultiStepForm({ onSubmit, children }) {
         showPreviousForm,
         showNextForm,
         isFirstForm: currentFormIndex === 0,
-        isLastForm: currentFormIndex === children.length - 1,
+        isLastForm: currentFormIndex === childrenArray.length - 1,
         currentFormIndex,
         formData,
         setFormData,
@@ -47,7 +49,7 @@ function MultiStepForm({ onSubmit, children }) {
       <Container>
         <Stepper steps={children} currentStepIndex={currentFormIndex} />
         <h1>{title}</h1>
-        {children[currentFormIndex]}
+        {children.length > 0 ? children[currentFormIndex] : children}
       </Container>
     </MultiStepFormContext.Provider>
   );
