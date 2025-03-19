@@ -7,6 +7,7 @@ import { useMultiStepFormContext } from "./MultiStepForm";
 import Button from "../Button";
 import Form from "../Form";
 import ButtonGroup from "../ButtonGroup";
+import { useEffect } from "react";
 
 const NextButton = styled(Button)`
   margin-left: auto;
@@ -20,21 +21,25 @@ function FormStep({ children }) {
     setFormData,
     isFirstForm,
     isLastForm,
-    onSubmit: finalSubmit,
+    finalSubmit,
   } = useMultiStepFormContext();
 
   const methods = useForm({ defaultValues: { ...formData } });
 
+  function sendData(data) {
+    return finalSubmit(data);
+  }
+
   function onSubmit(data) {
-    console.log("FORMDATA", data);
-    setFormData({ ...formData, ...data });
+    setFormData((prevState) => ({ ...prevState, ...data }));
+
     if (!isLastForm) return showNextForm();
-    return finalSubmit();
+    sendData(data);
   }
 
   function onPreviousForm() {
     const formValues = methods.getValues();
-    setFormData({ ...formData, ...formValues });
+    setFormData((prevState) => ({ ...prevState, ...formValues }));
     showPreviousForm();
   }
 

@@ -4,7 +4,7 @@ import { MultiStepForm } from "../../ui/multi-step-form/MultiStepForm";
 import FormStep from "../../ui/multi-step-form/FormStep";
 import NewProductCategoryForm from "./NewProductCategoryForm";
 import NewProductInformationForm from "./NewProductInformationForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -13,12 +13,13 @@ const Container = styled.div`
 `;
 
 function CreateNewProductForm() {
-  function handleSubmit() {
-    alert("SUBMITED FROM CREATENEWPRODUCTFORM");
+  function handleFormData(formData) {
+    console.log(formData);
   }
+
   return (
     <Container>
-      <MultiStepForm onSubmit={handleSubmit}>
+      <MultiStepForm finalSubmit={handleFormData}>
         <FormStep>
           <NewProductInformationForm />
         </FormStep>
