@@ -11,7 +11,7 @@ import { useParentCategories } from "../categories/useParentCategories";
 import { useSubCategories } from "../categories/useSubCategories";
 
 function NewProductCategoryForm() {
-  const { setTitle, onSubmit } = useMultiStepFormContext();
+  const { setTitle } = useMultiStepFormContext();
 
   const {
     watch,

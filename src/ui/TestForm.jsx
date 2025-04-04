@@ -6,11 +6,11 @@ import AddressForm from "./AddressForm";
 import RandomForm from "./RandomForm";
 
 function TestForm() {
-  function submit() {
-    alert("FORM SUBMITTED");
+  function submit(formData) {
+    console.log(formData);
   }
   return (
-    <MultiStepForm onSubmit={submit}>
+    <MultiStepForm finalSubmit={submit}>
       <FormStep>
         <NameForm />
       </FormStep>
